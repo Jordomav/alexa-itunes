@@ -1,16 +1,17 @@
 {
   "name": "alexa_boilerplate",
   "license": "UNLICENSED",
-  "repository" :
-  	{ "type" : "git",
-		"url" : "https://github.com/npm/npm.git"
-  	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
   "version": "v1.0.0",
   "description": "A skill for Amazon Alexa",
   "scripts": {},
   "dependencies": {
+    "alexa-app": "latest",
     "config": "1.16.0",
-    "alexa-app": "latest"
+    "request": "^2.80.0"
   },
   "devDependencies": {
     "aws-sdk": "latest",
