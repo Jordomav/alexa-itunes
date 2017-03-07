@@ -22,8 +22,17 @@ app.intent('movie',
 				res.say('Could not find search results for ' + movie);
 				res.shouldEndSession(true);
 				res.send();
-			} else {
-				res.say('Here is what I found for ' + movie + '. Please look at the Alexa app for more info');
+			} else if (body.results.length > 1) {
+					res.say('I found multiple results for ' + movie);
+				} else {
+					res.say('Here is what I found for ' + movie + '. Please look at the Alexa app for more info');
+					res.card(
+						body.reults[0].trackName,
+						'Rent in HD: ' + body.results[0].trackHdRentalPrice,
+						'Rent in SD: ' + body.results[0].trackRentalPrice,
+						'Buy HD: ' + body.results[0].trackHdPrice,
+						'Buy SD: ' + body.results[0].trackPrice
+					);
 			}
 		});
 	}
