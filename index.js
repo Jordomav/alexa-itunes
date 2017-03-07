@@ -28,6 +28,7 @@ app.intent('movie',
 					res.say('Here is what I found for ' + movie + '. Please look at the Alexa app for more info');
 					res.card(
 						body.reults[0].trackName,
+						body.results[0].trackViewUrl,
 						'Rent in HD: ' + body.results[0].trackHdRentalPrice,
 						'Rent in SD: ' + body.results[0].trackRentalPrice,
 						'Buy HD: ' + body.results[0].trackHdPrice,
@@ -50,8 +51,16 @@ app.intent('music',
 				res.say('Could not find search results for ' + song);
 				res.shouldEndSession(true);
 				res.send();
+			} else if(body.request.length > 1) {
+				res.say('I found multiple results for ' + song);
 			} else {
 				res.say('Here is what I found for ' + song + '. Please look at the Alexa app for more info');
+				res.card(
+					body.results[0].collectionName,
+					body.results[0].artworkUrl100,
+					body.results[0].artistName,
+					body.results[0].trackViewUrl
+				);
 			}
 		});
 	}
